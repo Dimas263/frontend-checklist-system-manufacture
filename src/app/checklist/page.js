@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function ChecklistPage() {
     /*const API_URL = "http://localhost:9090";*/
-    const API_URL = "https://backend-checklist-system-manufactur.vercel.app";
+    /*const API_URL = "https://backend-checklist-system-manufactur.vercel.app";*/
     const [checklists, setChecklists] = useState([]);
     const [category, setCategory] = useState("machine");
     const [task, setTask] = useState("");
@@ -104,8 +104,10 @@ export default function ChecklistPage() {
 
     // Fetch checklist dari backend
     const fetchChecklists = async (authToken) => {
-        const res = await fetch(`${API_URL}/checklist`, {
-            headers: { Authorization: `Bearer ${authToken}` },
+        const res = await fetch(
+            /*`${API_URL}/checklist`, */
+            `/api/checklist`,
+            {headers: { Authorization: `Bearer ${authToken}` },
         });
         if (res.ok) {
             const data = await res.json();
@@ -116,11 +118,14 @@ export default function ChecklistPage() {
     // Tambah checklist
     const addChecklist = async (e) => {
         e.preventDefault();
-        const res = await fetch(`${API_URL}/checklist`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+        const res = await fetch(
+            /*`${API_URL}/checklist`,*/
+            `/api/checklist`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({ category, task, status: "pending" }),
         });
@@ -134,14 +139,18 @@ export default function ChecklistPage() {
         const updatedStatus = currentStatus === "done" ? "pending" : "done";
         const item = checklists.find((c) => c.id === id);
 
-        const res = await fetch(`${API_URL}/checklist`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ ...item, status: updatedStatus }),
-        });
+        const res = await fetch(
+            /*`${API_URL}/checklist`, */
+            `/api/checklist`,
+            {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ ...item, status: updatedStatus }),
+            }
+        );
 
         const updatedItem = await res.json();
         setChecklists(checklists.map((c) => (c.id === id ? updatedItem : c)));
@@ -149,7 +158,10 @@ export default function ChecklistPage() {
 
     // Hapus checklist
     const deleteChecklist = async (id) => {
-        await fetch(`${API_URL}/checklist?id=${id}`, {
+        await fetch(
+            /*`${API_URL}/checklist?id=${id}`, */
+            `/api/checklist?id=${id}`,
+            {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` },
         });
