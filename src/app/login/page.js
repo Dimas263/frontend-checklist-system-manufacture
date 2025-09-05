@@ -15,7 +15,7 @@ export default function LoginPage() {
         try {
             const res =
                 /*await fetch("http://localhost:9090/login",*/
-                await fetch("https://backend-checklist-system-manufactur-six.vercel.app/login",
+                await fetch("https://backend-checklist-system-manufactur.vercel.app/login",
                     {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

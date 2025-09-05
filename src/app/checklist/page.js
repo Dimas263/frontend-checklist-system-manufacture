@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function ChecklistPage() {
     /*const API_URL = "http://localhost:9090";*/
-    const API_URL = "https://backend-checklist-system-manufactur-six.vercel.app";
+    const API_URL = "https://backend-checklist-system-manufactur.vercel.app";
     const [checklists, setChecklists] = useState([]);
     const [category, setCategory] = useState("machine");
     const [task, setTask] = useState("");
