@@ -1,4 +1,5 @@
 # Checklist System for Manufacture 
+### [checklist-system-manufacture.vercel.app/](https://checklist-system-manufacture.vercel.app/)
 This is a simple [Next.js](https://nextjs.org) project for a frontend and using [Go](https://go.dev/dl/) for a backend and deployment using vercel
 
 ## Getting Started
@@ -99,4 +100,12 @@ Account : `admin` `password123` <br>
 <br>
 <img src="screenshoot/management_checklist.png" alt="checklist" width="380px" />
 
-## Thanks
+## Deploy with Vercel
+* [Login vercel](https://vercel.com/)
+* Create New Project
+<img src="screenshoot/vercel_add_new.png" alt="vercel add new project" />
+* Import Project from github
+<img src="screenshoot/import%20project.png" alt="import project" />
+* Deploy
+<img src="screenshoot/vercel_deploy.png" alt="vercel_deploy" />
+<img src="screenshoot/vercel_success.png" alt="vercel_success" />
