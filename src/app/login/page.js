@@ -13,14 +13,22 @@ export default function LoginPage() {
         e.preventDefault();
 
         try {
-            const res =
-                /*await fetch("http://localhost:9090/login",*/
-                await fetch("https://backend-checklist-system-manufactur.vercel.app/login",
+            /*const res =
+                await fetch("http://localhost:9090/login",
                     {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
-            });
+            });*/
+
+            const res = await fetch(
+                "https://backend-checklist-system-manufactur.vercel.app/login",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password }),
+                }
+            );
 
             if (!res.ok) {
                 setError("❌ Login gagal. Periksa username/password.");
@@ -34,6 +42,7 @@ export default function LoginPage() {
             router.push("/checklist"); // redirect ke halaman checklist
         } catch (err) {
             console.error(err);
+            console.log("error : " + err);
             setError("⚠️ Server error, coba lagi.");
         }
     };
