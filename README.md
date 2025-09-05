@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Checklist System for Manufacture 
+This is a simple [Next.js](https://nextjs.org) project for a frontend and using [Go](https://go.dev/dl/) for a backend and deployment using vercel
 
 ## Getting Started
-
+### Installation Project [Here](/Install.md)
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Flow Proses
+### Login
+```dockerignore
+User input username & password → Backend memvalidasi dan mengembalikan token JWT → Token disimpan di localStorage
+```
+### Checklist
+Hanya bisa diakses jika token valid <br>
+* Read Checklist
+```
+Fetch checklist dari backend menggunakan token
+```
+* Add checklist:
+```dockerignore
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Pilih kategori → Pilih task dari daftar saran → Submit → backend menyimpan data
+```
+* Update checklist:
+```dockerignore
+Klik tombol “Mark as Done / Mark as Pending” → Backend update status
+```
 
-## Learn More
+* Delete checklist:
+```dockerignore
+Klik tombol Hapus → backend hapus data
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Logout
+```dockerignore
+Menghapus token dari localStorage → Redirect ke halaman login
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Front-end
+* Manage Checklist `CRUD` `Login Required`
+* Login `Authentication`
+* Structure
+```dockerignore
+/frontend-checklist
+  /app
+    page.js
+    login/page.js
+    checklist/page.js
+  package.json
+```
+## Back-end
+* Function Login Authentication `jwt token`
+* Function Checklist `Create` `Read` `Update` `Delete`
+* Temporary Database
+* Structure
+```dockerignore
+/backend-checklist
+  main.go
+  go.mod
+  auth.go
+  checklist.go
+  vercel.json
+```
+* API
+```dockerignore
+http://localhost:9090
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Endpoints:
 
-## Deploy on Vercel
+POST /login → login user
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+GET /checklist → ambil semua checklist
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+POST /checklist → tambah checklist
+
+PUT /checklist → update status checklist
+
+DELETE /checklist?id=... → hapus checklist
+```
+
+### Tools
+* Frontend: `Next.js`, `React`, `TailwindCSS`
+* Backend: `Golang`, `net/http`, `API`
+* Deployment: `Vercel`
+* Authentication: `JWT Token`
+* Database : `Temporary Database`, `Local Storage`
+
+## Screenshoot
+<img src="screenshoot/home.png" alt="home" width="380px" />
+
+Account : `admin` `password123` <br>
+<img src="screenshoot/login.png" alt="login" width="380px" />
+<img src="screenshoot/management_checklist.png" alt="checklist" width="380px" />
