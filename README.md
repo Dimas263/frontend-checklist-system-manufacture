@@ -98,3 +98,5 @@ Account : `admin` `password123` <br>
 <img src="screenshoot/login.png" alt="login" width="380px" />
 <br>
 <img src="screenshoot/management_checklist.png" alt="checklist" width="380px" />
+
+## Thanks
