@@ -223,10 +223,10 @@ export default function ChecklistPage() {
                         key={c.id}
                         className="flex justify-between items-center border p-2 rounded"
                     >
-            <span>
-              <strong>[{c.category}]</strong> {c.task} -{" "}
-                <em>{c.status}</em>
-            </span>
+                        <span>
+                          <strong>[{c.category}]</strong> {c.task} -{" "}
+                            <em>{c.status}</em>
+                        </span>
                         <div className="flex gap-2">
                             <button
                                 onClick={() => toggleStatus(c.id, c.status)}
